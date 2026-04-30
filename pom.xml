@@ -1,9 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ascloud</groupId>
   <artifactId>notification-service</artifactId>
   <version>1.0</version>
+  <packaging>jar</packaging>
 
   <properties>
     <java.version>17</java.version>
@@ -12,9 +16,10 @@
   </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
+      <artifactId>spring-boot-starter-web</artifactId>
       <version>3.2.0</version>
     </dependency>
 
@@ -23,7 +28,16 @@
       <artifactId>spring-kafka</artifactId>
       <version>3.1.0</version>
     </dependency>
+
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>Maven Central</name>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>
@@ -50,4 +64,5 @@
       <url>http://13.201.141.194:8081/repository/maven-releases/</url>
     </repository>
   </distributionManagement>
+
 </project>
