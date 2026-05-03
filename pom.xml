@@ -1,45 +1,61 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ascloud</groupId>
   <artifactId>notification-service</artifactId>
   <version>1.0.4</version>
+  <name>notification-service</name>
+
+  <!-- Spring Boot Parent (recommended) -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.0</version>
+    <relativePath/>
+  </parent>
 
   <properties>
     <java.version>17</java.version>
-    <maven.compiler.release>17</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
+
+    <!-- Web -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <version>3.2.0</version>
     </dependency>
 
+    <!-- Kafka -->
     <dependency>
       <groupId>org.springframework.kafka</groupId>
       <artifactId>spring-kafka</artifactId>
-      <version>3.1.0</version>
     </dependency>
 
+    <!-- Mail -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-mail</artifactId>
-      <version>3.2.0</version>
     </dependency>
+
+    <!-- Optional: Actuator (good for monitoring / health checks) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
   </dependencies>
 
-  <repositories>
-    <repository>
-      <id>central</id>
-      <url>https://repo1.maven.org/maven2/</url>
-    </repository>
-  </repositories>
-
   <build>
+    <!-- This is the KEY fix -->
+    <finalName>app</finalName>
+
     <plugins>
+
+      <!-- Compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -49,18 +65,12 @@
         </configuration>
       </plugin>
 
+      <!-- Spring Boot Repackage -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
+
     </plugins>
   </build>
 
@@ -70,4 +80,5 @@
       <url>http://13.201.141.194:8081/repository/maven-releases/</url>
     </repository>
   </distributionManagement>
+
 </project>
