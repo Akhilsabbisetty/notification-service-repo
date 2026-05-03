@@ -4,6 +4,15 @@ server:
 spring:
   kafka:
     bootstrap-servers: redpanda:9092
-    consumer:
-      group-id: payment-service
-      auto-offset-reset: earliest
+
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
