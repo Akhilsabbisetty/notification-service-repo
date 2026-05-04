@@ -5,14 +5,7 @@ spring:
   kafka:
     bootstrap-servers: redpanda:9092
 
-  mail:
-    host: ${SMTP_HOST}
-    port: ${SMTP_PORT}
-    username: ${SMTP_USERNAME}
-    password: ${SMTP_PASSWORD}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+aws:
+  region: ${AWS_REGION}
+  sns:
+    topic-arn: ${AWS_SNS_TOPIC_ARN}

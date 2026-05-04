@@ -1,21 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ascloud</groupId>
-  <artifactId>notification-service</artifactId>
-  <version>1.0.4</version>
-  <name>notification-service</name>
-
-  <!-- Spring Boot Parent (recommended) -->
+  <!-- Spring Boot Parent -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.2.0</version>
     <relativePath/>
   </parent>
+
+  <groupId>com.ascloud</groupId>
+  <artifactId>notification-service</artifactId>
+  <version>1.0.5</version>
+  <name>notification-service</name>
 
   <properties>
     <java.version>17</java.version>
@@ -35,13 +36,14 @@
       <artifactId>spring-kafka</artifactId>
     </dependency>
 
-    <!-- Mail -->
+    <!-- AWS SNS SDK (V2) -->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-mail</artifactId>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>sns</artifactId>
+      <version>2.25.60</version>
     </dependency>
 
-    <!-- Optional: Actuator (good for monitoring / health checks) -->
+    <!-- Optional but useful -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
@@ -50,7 +52,8 @@
   </dependencies>
 
   <build>
-    <!-- This is the KEY fix -->
+
+    <!-- 🔥 REQUIRED for Jenkins + Docker -->
     <finalName>app</finalName>
 
     <plugins>
@@ -65,7 +68,7 @@
         </configuration>
       </plugin>
 
-      <!-- Spring Boot Repackage -->
+      <!-- Spring Boot fat jar -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
